@@ -1,0 +1,58 @@
+service: aws-lambda-video-album
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: sa-east-1
+  environment:
+    DB_TABLE_NAME: Videos
+  iam:
+    role:
+      statements:
+      - Effect: Allow
+        Action:
+          - dynamodb:*
+        Resource: arn:aws:dynamodb:sa-east-1:716924473205:table/Videos
+
+functions:
+  addVideo:
+    handler: src/functions/addVideo.addVideo
+    events:
+      - httpApi:
+          path: /videos
+          method: post
+  getVideos:
+    handler: src/functions/getVideos.getAllVideos
+    events:
+      - httpApi:
+          path: /videos
+          method: get
+  getVideo:
+    handler: src/functions/getVideo.getVideo
+    events:
+      - httpApi:
+          path: /videos/{id}
+          method: get
+  deleteVideo:
+    handler: src/functions/deleteVideo.deleteVideo
+    events:
+      - httpApi:
+          path: /videos/{id}
+          method: delete
+
+resources:
+  Resources:
+    VideosTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: Videos
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
