@@ -14,10 +14,13 @@ Estas instrucciones te permitirán obtener una copia del proyecto en tu máquina
 
 ## Configuración 🔧
 
-Agregar variables de entorno
+Agregar variables de entorno en Archivo ```serverless.yml```  en ```provider.environment```
+![image](https://user-images.githubusercontent.com/31327706/188046784-63bf1212-8c8c-481a-8012-c47c0ea9663e.png)
+
+En caso de no tener, utilizar las comentadas a continuación.
 ```ini
-DB_CONNECTION=#arn:aws:dynamodb:sa-east-1:xxxxxxxxxxxx:table/Videos
 DB_TABLE_NAME=#Videos
+DB_URL=#arn:aws:dynamodb:sa-east-1:716924473205:table
 ```
 ## Instalación 🔧
 ```
