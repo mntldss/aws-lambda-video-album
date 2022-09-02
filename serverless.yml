@@ -7,35 +7,36 @@ provider:
   region: sa-east-1
   environment:
     DB_TABLE_NAME: Videos
+    DB_URL: arn:aws:dynamodb:sa-east-1:716924473205:table
   iam:
     role:
       statements:
       - Effect: Allow
         Action:
           - dynamodb:*
-        Resource: arn:aws:dynamodb:sa-east-1:716924473205:table/Videos
+        Resource: ${self:provider.environment.DB_URL}/${self:provider.environment.DB_TABLE_NAME}
 
 functions:
   addVideo:
-    handler: src/lambdas/addVideo.addVideo
+    handler: src/lambdas/add-video.addVideo
     events:
       - httpApi:
           path: /videos
           method: post
   getVideos:
-    handler: src/lambdas/getVideos.getAllVideos
+    handler: src/lambdas/get-videos.getAllVideos
     events:
       - httpApi:
           path: /videos
           method: get
   getVideo:
-    handler: src/lambdas/getVideo.getVideo
+    handler: src/lambdas/get-video.getVideoById
     events:
       - httpApi:
           path: /videos/{id}
           method: get
   deleteVideo:
-    handler: src/lambdas/deleteVideo.deleteVideo
+    handler: src/lambdas/delete-video.deleteVideoById
     events:
       - httpApi:
           path: /videos/{id}
@@ -46,7 +47,7 @@ resources:
     VideosTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: Videos
+        TableName: ${self:provider.environment.DB_TABLE_NAME}
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: S
