@@ -189,7 +189,12 @@ Para probar cada endpoint puedes realizar los siguientes pasos.
 
 ## QA 🔩
 
+### Diagrama Agregar Video
+
+![Diagrama-backend-add-video drawio](https://user-images.githubusercontent.com/31327706/188233931-a9627ecc-554e-44e6-b931-3e0b1136f684.png)
+
 ### ```POST``` **agregar un video**
+
 ```bash
 curl --location --request POST 'https://g9y6jtrkh6.execute-api.sa-east-1.amazonaws.com/videos' \
 --header 'Content-Type: application/json' \
@@ -217,6 +222,9 @@ Respuesta esperada
 ```json 
   "mensaje de error" 
 ```
+### Diagrama obtener todos los videos
+
+![Diagrama-backend-get-videos drawio](https://user-images.githubusercontent.com/31327706/188234423-36201fbc-2f5b-484c-9985-c9e02aa06410.png)
 
 ### ```GET``` **Obtener todos los videos**
 ```bash
@@ -247,6 +255,10 @@ Respuesta esperada
   "mensaje de error" 
 ```
 
+### Diagrama obtener un video
+
+![Diagrama-backend-get-video drawio](https://user-images.githubusercontent.com/31327706/188234512-16cc2adf-2bf9-4dd7-aae7-74a5b6811abf.png)
+
 ### ```GET``` **Obtener un video**
 ```bash
 curl --location --request GET 'https://g9y6jtrkh6.execute-api.sa-east-1.amazonaws.com/videos/3dff7ff9-4345-44a2-9a7c-5022cc9dcd9f'
@@ -275,6 +287,10 @@ Respuesta esperada
 ```json  
  "mensaje de error" 
 ```
+
+### Diagrama eliminar un video
+
+![Diagrama-backend-delete-video drawio](https://user-images.githubusercontent.com/31327706/188234911-6acf86ac-830c-4099-9ce9-dc45c703c631.png)
 
 ### ```DELETE``` **Eliminar un video**
 ```bash
