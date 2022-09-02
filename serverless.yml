@@ -6,8 +6,8 @@ provider:
   runtime: nodejs14.x
   region: sa-east-1
   environment:
-    DB_TABLE_NAME: Videos
-    DB_URL: arn:aws:dynamodb:sa-east-1:716924473205:table
+    DB_TABLE_NAME:
+    DB_URL:
   iam:
     role:
       statements:
