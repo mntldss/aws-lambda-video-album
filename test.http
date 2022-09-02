@@ -1,0 +1,23 @@
+@api = https://g9y6jtrkh6.execute-api.sa-east-1.amazonaws.com
+
+GET {{api}}
+
+### add video
+POST {{api}}/videos
+Content-Type: application/json
+
+{
+"thumbnail": "https://i.ytimg.com/vi/04854XqcfCY/default.jpg",
+"title": "Queen - We Are The Champions (Official Video)",
+"description": "Taken from News Of The World, 1977 and Greatest Video Hits 1. \n\n#QueenTheGreatest #Queen #WeAreTheChampions\n\nClick here to buy the DVD with this video at the Official Queen Store:\nhttp://www.queenonlinestore.com\n\nSubscribe to the official Queen channel Here https://Queen.lnk.to/Subscribe\nWatch more: https://Queen.lnk.to/OfficialMusicVideos\n\nAbout Queen:\nWelcome to the official Queen channel. Subscribe today for exclusive Queen videos, including live shows, interviews, music videos & much more.\n\nConnect with Queen Online:\nVisit the official Queen Website: https://Queen.lnk.to/Official\nFollow Queen on Instagram: https://Queen.lnk.to/Instagram\nFollow Queen on TikTok: https://Queen.lnk.to/TikTokOfficial\nFollow Queen on Twitter: https://Queen.lnk.to/Twitter\n\nQueen - We Are The Champions (Official Video)\nhttps://www.youtube.com/user/queenofficial",
+"url": "https://www.youtube.com/watch?v=04854XqcfCY"
+}
+
+### get videos
+GET {{api}}/videos
+
+### get one video ( replace the id for a valid one )
+GET {{api}}/videos/81b2bd85-aba0-406d-98a2-4fc2b6e03153
+
+### delete one Video
+DELETE {{api}}/videos/81b2bd85-aba0-406d-98a2-4fc2b6e03153

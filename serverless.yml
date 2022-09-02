@@ -17,25 +17,25 @@ provider:
 
 functions:
   addVideo:
-    handler: src/functions/addVideo.addVideo
+    handler: src/lambdas/addVideo.addVideo
     events:
       - httpApi:
           path: /videos
           method: post
   getVideos:
-    handler: src/functions/getVideos.getAllVideos
+    handler: src/lambdas/getVideos.getAllVideos
     events:
       - httpApi:
           path: /videos
           method: get
   getVideo:
-    handler: src/functions/getVideo.getVideo
+    handler: src/lambdas/getVideo.getVideo
     events:
       - httpApi:
           path: /videos/{id}
           method: get
   deleteVideo:
-    handler: src/functions/deleteVideo.deleteVideo
+    handler: src/lambdas/deleteVideo.deleteVideo
     events:
       - httpApi:
           path: /videos/{id}
