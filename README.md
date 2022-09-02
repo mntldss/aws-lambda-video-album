@@ -8,16 +8,35 @@ En el presente repositorio encontraras el backend del proyecto Youtube Video Alb
 Estas instrucciones te permitirán obtener una copia del proyecto en tu máquina :grin:
 
 ## Pre-requisitos 📋
+- Tener una copia del proyecto en tu maquina
 - [Node.JS](https://nodejs.org/es/)
-- Cuenta configurada en [aws-cli](https://aws.amazon.com/es/cli/)
 - [serverless](https://www.serverless.com/framework/docs/getting-started)
+- credenciales de AWS configuradas en tu maquina [aws-cli](https://aws.amazon.com/es/cli/) [AWS Credentials](https://www.serverless.com/framework/docs/providers/aws/guide/credentials/) (Opcional)
 
 ## Configuración 🔧
+Con el siguiente comando entregamos nuestras credenciales de AWS para configurar Serverless en profile "default"
+En caso de no tener, utilizar las comentadas a continuación.
+- provider ```aws```
+- key ```AKIA2N3AHJ52VELAFO6A```
+- secret ```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```
 
-Agregar variables de entorno
+Ejecutamos en terminal
+```bash
+ serverless config credentials --provider aws --key AKIA2N3AHJ52VELAFO6A --secret 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  
+``` 
+obtendras un mensaje similar al siguiente:
+```bash
+❯ serverless config credentials --provider aws --key AKIA2N3AHJ52VELAFO6A --secret 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
+✔ Profile "default" has been configured
+``` 
+
+Agregar variables de entorno en Archivo ```serverless.yml```  en ```provider.environment```
+![image](https://user-images.githubusercontent.com/31327706/188046784-63bf1212-8c8c-481a-8012-c47c0ea9663e.png)
+
+En caso de no tener, utilizar las comentadas a continuación.
 ```ini
-DB_CONNECTION=#arn:aws:dynamodb:sa-east-1:xxxxxxxxxxxx:table/Videos
-DB_TABLE_NAME=#Videos
+DB_TABLE_NAME=Videos
+DB_URL=arn:aws:dynamodb:sa-east-1:716924473205:table
 ```
 ## Instalación 🔧
 ```
@@ -29,7 +48,7 @@ $ npm install
 ```
 $ serverless deploy
 ```
-despues del despliegue, obtendras un mensaje por consola similar al siguiente:
+despues del despliegue, obtendras un mensaje por terminal similar al siguiente:
 ```bash
 Deploying aws-lambda-video-album to stage dev (sa-east-1)
 
@@ -170,7 +189,12 @@ Para probar cada endpoint puedes realizar los siguientes pasos.
 
 ## QA 🔩
 
-```POST``` **agregar un video**
+### Diagrama Agregar Video
+
+![Diagrama-backend-add-video drawio](https://user-images.githubusercontent.com/31327706/188233931-a9627ecc-554e-44e6-b931-3e0b1136f684.png)
+
+### ```POST``` **agregar un video**
+
 ```bash
 curl --location --request POST 'https://g9y6jtrkh6.execute-api.sa-east-1.amazonaws.com/videos' \
 --header 'Content-Type: application/json' \
@@ -196,10 +220,13 @@ Respuesta esperada
 ```
 - error: status 500
 ```json 
-  "message": "mensaje de error" 
+  "mensaje de error" 
 ```
+### Diagrama obtener todos los videos
 
-```GET``` **Obtener todos los videos**
+![Diagrama-backend-get-videos drawio](https://user-images.githubusercontent.com/31327706/188234423-36201fbc-2f5b-484c-9985-c9e02aa06410.png)
+
+### ```GET``` **Obtener todos los videos**
 ```bash
 curl --location --request GET 'https://g9y6jtrkh6.execute-api.sa-east-1.amazonaws.com/videos'
 ```
@@ -225,10 +252,14 @@ Respuesta esperada
 
 - error: status 500
 ```json  
-  "message": "mensaje de error" 
+  "mensaje de error" 
 ```
 
-```GET``` **Obtener un video**
+### Diagrama obtener un video
+
+![Diagrama-backend-get-video drawio](https://user-images.githubusercontent.com/31327706/188234512-16cc2adf-2bf9-4dd7-aae7-74a5b6811abf.png)
+
+### ```GET``` **Obtener un video**
 ```bash
 curl --location --request GET 'https://g9y6jtrkh6.execute-api.sa-east-1.amazonaws.com/videos/3dff7ff9-4345-44a2-9a7c-5022cc9dcd9f'
 ```
@@ -257,7 +288,11 @@ Respuesta esperada
  "mensaje de error" 
 ```
 
-```DELETE``` **Eliminar un video**
+### Diagrama eliminar un video
+
+![Diagrama-backend-delete-video drawio](https://user-images.githubusercontent.com/31327706/188234911-6acf86ac-830c-4099-9ce9-dc45c703c631.png)
+
+### ```DELETE``` **Eliminar un video**
 ```bash
 curl --location --request DELETE 'https://g9y6jtrkh6.execute-api.sa-east-1.amazonaws.com/videos/3dff7ff9-4345-44a2-9a7c-5022cc9dcd9f'
 ```
