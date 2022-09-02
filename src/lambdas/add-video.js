@@ -2,6 +2,7 @@ const AWS = require("aws-sdk");
 const middy = require("@middy/core");
 const jsonBodyParser = require("@middy/http-json-body-parser");
 const httpErrorHandler = require("@middy/http-error-handler");
+const cors = require("@middy/http-cors");
 
 const Video = require("../classes/Video");
 const Response = require("../responses");
@@ -31,5 +32,6 @@ const addVideo = async (event) => {
 module.exports = {
   addVideo: middy(addVideo)
     .use(jsonBodyParser())
-    .use(httpErrorHandler()),
+    .use(httpErrorHandler())
+    .use(cors()),
 };

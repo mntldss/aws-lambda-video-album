@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@middy/core": "^3.3.0",
+    "@middy/http-cors": "^3.3.0",
     "@middy/http-error-handler": "^3.3.0",
     "@middy/http-json-body-parser": "^3.3.0",
     "aws-sdk": "^2.1206.0",

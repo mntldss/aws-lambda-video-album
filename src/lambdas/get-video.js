@@ -1,4 +1,7 @@
 const AWS = require("aws-sdk");
+const middy = require("@middy/core");
+const cors = require("@middy/http-cors");
+
 const Response = require("../responses");
 
 const getVideoById = async (event) => {
@@ -25,4 +28,4 @@ const getVideoById = async (event) => {
   }
 };
 
-module.exports = { getVideoById };
+module.exports = { getVideoById: middy(getVideoById).use(cors()) };

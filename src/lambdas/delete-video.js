@@ -1,4 +1,7 @@
 const AWS = require("aws-sdk");
+const middy = require("@middy/core");
+const cors = require("@middy/http-cors");
+
 const Response = require("../responses");
 
 const deleteVideoById = async (event) => {
@@ -31,4 +34,4 @@ const deleteVideoById = async (event) => {
   }
 };
 
-module.exports = { deleteVideoById };
+module.exports = { deleteVideoById: middy(deleteVideoById).use(cors())};
