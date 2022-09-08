@@ -327,7 +327,7 @@ Respuesta esperada
 
 ## Versionado 📌
 
-Por el momento no se encuentra versionado, pero se utilizara [samver](https://samver.org/). Para todas las versiones disponibles.
+Por el momento no se encuentra versionado, pero se utilizara [semver](https://semver.org/). Para todas las versiones disponibles.
 
 # Autores ✒️
 
